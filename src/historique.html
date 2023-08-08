@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="../css/historique.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Roboto:wght@100;300;400&family=Rubik:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="../img/icon.png" />
+
+    <title>Historique</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <a href="../index.html" class="back-button">
+        <div class="button-content">
+          <img src="../img/arrow.png" alt="Arrow" class="return-arrow" />
+          <span>Retour </span>
+        </div>
+      </a>
+
+      <h1 class="title mb-4 fw-medium">Historique De Mouvement</h1>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>
+              ID Paiement
+              <button class="sort-btn" id="sort-id">
+                <img
+                  src="../img/sort-arrow.png"
+                  alt="Sort Arrow"
+                  class="arrow-icon"
+                />
+              </button>
+            </th>
+            <th>
+              <span>Date</span>
+              <button class="sort-btn" id="sort-date">
+                <img
+                  src="../img/sort-arrow.png"
+                  alt="Sort Arrow"
+                  class="arrow-icon"
+                />
+              </button>
+            </th>
+            <th>
+              Montant (DT)
+              <button class="sort-btn" id="sort-montant">
+                <img
+                  src="../img/sort-arrow.png"
+                  alt="Sort Arrow"
+                  class="arrow-icon"
+                />
+              </button>
+            </th>
+            <th>Méthode de Paiement</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>2023-05-15</td>
+            <td>100.00</td>
+            <td class="d-flex align-items-center">
+              <img
+                src="../img/mastercard.png"
+                alt="MasterCard"
+                class="credit-card"
+              />
+              <span>MasterCard</span>
+            </td>
+            <td class="text-center">
+              <span class="badge text-bg-success">Success</span>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>2023-04-14</td>
+            <td>70.00</td>
+            <td class="d-flex align-items-center">
+              <img src="../img/visa.png" alt="MasterCard" class="visa-card" />
+              <span>Visa</span>
+            </td>
+            <td class="text-center">
+              <span class="badge text-bg-danger">Rejected</span>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>2023-03-15</td>
+            <td>110.00</td>
+            <td class="d-flex align-items-center">
+              <img
+                src="../img/mastercard.png"
+                alt="MasterCard"
+                class="credit-card"
+              />
+              <span>MasterCard</span>
+            </td>
+            <td class="text-center">
+              <span class="badge text-bg-success">Success</span>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>2023-04-13</td>
+            <td>75.00</td>
+            <td class="d-flex align-items-center">
+              <img
+                src="../img/mastercard.png"
+                alt="MasterCard"
+                class="credit-card"
+              />
+              <span>MasterCard</span>
+            </td>
+            <td class="text-center">
+              <span class="badge text-bg-info">Pending</span>
+            </td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../javascript/historique.js"></script>
+  </body>
+</html>

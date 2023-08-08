@@ -1,0 +1,99 @@
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  transition: all 0.2s linear;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 22rem); /* 2 cards per row */
+  grid-gap: 2.5rem;
+  justify-items: center;
+  align-items: center;
+  margin: 2.5rem auto; /* Center the grid container horizontally on the page */
+  max-width: fit-content;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  flex-direction: column;
+  width: calc(50%);
+  width: 100%;
+  height: 12rem;
+  background: #f00202;
+  border-radius: 20px;
+
+  /* Card effect */
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: transform 0.5s ease;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card .stretched-link {
+  position: absolute;
+  text-decoration: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.card--content {
+  position: relative;
+  text-align: center; /* Center the content horizontally */
+  top: 38%; /* Move content down by 50% of the card height */
+  transform: translateY(-50%); /* Adjust content back up by 50% of its height */
+}
+
+.card--icon {
+  width: 4.5rem;
+  height: 4.5rem;
+  transition: transform 0.5s ease;
+}
+
+#card--icon--ticket {
+  margin-top: -5px;
+}
+
+#card--icon--ticket,
+#card--icon--cotisation,
+#card--icon--report,
+#card--icon--doc {
+  width: 6rem;
+  height: 6rem;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card--icon {
+  transform: scale(1.16); /* Scale the image icon by 10% (slightly larger) */
+}
+
+.card--title {
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: capitalize;
+  margin-top: 0.8rem;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  .card-container {
+    grid-template-columns: 22rem; /* Show only 1 card per row in mobile view */
+  }
+}

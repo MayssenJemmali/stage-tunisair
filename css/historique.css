@@ -1,0 +1,64 @@
+/* Custom CSS */
+* {
+  font-family: "rubik";
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 5px 15px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.2s, border 0.2s;
+}
+
+.return-arrow {
+  margin-right: 15px;
+  height: 18px;
+  width: auto;
+}
+
+.back-button:hover {
+  background-color: #cc0000;
+  border-color: #cc0000;
+}
+
+.title {
+  font-family: "rubik";
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.sort-btn {
+  margin-left: 8px;
+}
+
+.credit-card {
+  width: auto;
+  height: 18px;
+  margin-right: 8px;
+}
+
+.visa-card {
+  width: auto;
+  height: 28px;
+  margin-right: 8px;
+}
+
+.badge {
+  font-size: 14px;
+  font-weight: 400;
+}
