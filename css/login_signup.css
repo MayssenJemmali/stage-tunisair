@@ -1,0 +1,109 @@
+* {
+  font-family: "rubik";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+.back-button {
+  align-self: flex-start;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 30rem;
+  width: 100%;
+  margin: 3rem auto;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  padding-bottom: 0;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  column-gap: 20px;
+}
+.form h2 {
+  margin-bottom: 20px;
+}
+.form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.form p {
+  margin-top: 15px;
+}
+
+.form-group {
+  width: 100%;
+}
+
+label {
+  width: auto;
+  margin-bottom: 3px;
+  margin-left: 3px;
+  font-weight: 450;
+}
+
+.select-sexe {
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><polygon points='0,0 10,0 5,6'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px top 50%, center;
+  background-size: 10px 6px, auto;
+  padding: 8px; /* Adjust padding as needed */
+  border: 1px solid #ccc; /* Add a border for better visual separation */
+  border-radius: 4px;
+}
+
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.eye-icon {
+  width: 20px;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.btn-primary {
+  padding: 5px 15px;
+  width: 100%;
+  margin-top: 1.5rem;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.2s, border 0.2s;
+}
+
+.form .btn-primary:hover,
+.form .btn-primary:active {
+  background-color: #cc0000;
+  border-color: #cc0000;
+}

@@ -1,3 +1,4 @@
+// Calendar Config
 const config = {
   mode: "range",
 };
