@@ -18,19 +18,40 @@ eyeIcon.addEventListener("click", () => {
 function validateLogInForm() {
   const matriculeInput = document.getElementById("Matricule");
   const passwordInput = document.getElementById("password");
+  const parentDiv = document.getElementById("form-floating-add-is-invalid");
+  const parentDivPw = document.getElementById(
+    "form-floating-add-is-invalid-pw"
+  );
+  const eyeIconDiv = document.getElementById("eye-icon-id");
+
   console.log("Matricule:", matriculeInput.value);
   console.log("Password:", passwordInput.value);
 
   // Matricule validation (5-digit number)
   const matriculePattern = /^\d{5}$/;
   if (!matriculePattern.test(matriculeInput.value)) {
-    alert("Le matricule doit être un nombre à 5 chiffres.");
-    return false;
+    parentDiv.classList.add("is-invalid");
+    matriculeInput.classList.add("is-invalid");
+  } else {
+    parentDiv.classList.remove("is-invalid");
+    matriculeInput.classList.remove("is-invalid");
   }
 
   // Password validation (not empty)
   if (passwordInput.value === "") {
-    alert("Le mot de passe ne peut pas être vide.");
+    passwordInput.classList.add("is-invalid");
+    parentDivPw.classList.add("is-invalid");
+    eyeIconDiv.classList.add("me-3");
+  } else {
+    passwordInput.classList.remove("is-invalid");
+    parentDivPw.classList.remove("is-invalid");
+    eyeIconDiv.classList.remove("me-3");
+  }
+
+  if (
+    !matriculePattern.test(matriculeInput.value) ||
+    passwordInput.value === ""
+  ) {
     return false;
   }
 
