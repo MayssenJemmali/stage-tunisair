@@ -21,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //header('Location: ' . $_SERVER['PHP_SELF']);
     $user_exist = true;
   } else {
-    $insert_data = "INSERT INTO user VALUES($matricule,'$cin','$nom','$prenom','$email','$numero','$sexe','$password')";
+    $insert_data = "INSERT INTO user 
+                    VALUES($matricule,'$cin','$nom','$prenom','$email','$numero','$sexe','$password')";
 
     mysql_query($insert_data);
   
@@ -29,9 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       session_start();
       $_SESSION['user_session'] = true;
       $_SESSION['user_matricule'] = $matricule;
-      $_SESSION['user_name'] = $prenom . ' ' . $nom;
-      
-      $user_exist = false;
       header('Location: ../index.php?success=true');
       exit();
   } else {
@@ -71,7 +69,7 @@ if (isset($_GET['success']) && $_GET['success'] === 'true') {
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Se connecter</title>
+    <title>S'inscrire</title>
   </head>
   <body>
     <div class="container">
@@ -160,10 +158,12 @@ if (isset($_GET['success']) && $_GET['success'] === 'true') {
             name="sexe"
             required
           >
+            <option value="" disabled selected >Chosir un genre</option>
             <option value="homme">Homme</option>
             <option value="femme">Femme</option>
           </select>
         </div>
+        
         <div class="form-group">
           <label for="motdepasse">Mot de passe :</label>
           <input
@@ -174,6 +174,7 @@ if (isset($_GET['success']) && $_GET['success'] === 'true') {
             required
           />
         </div>
+        
         <div class="form-group">
           <label for="verifmotdepasse">Vérification du mot de passe :</label>
           <input
@@ -184,12 +185,12 @@ if (isset($_GET['success']) && $_GET['success'] === 'true') {
             required
           />
         </div>
-        <button type="submit" class="btn btn-primary btn-block">
+        <button type="submit" class="btn btn-primary btn-block" id="form-submit">
           S'inscrire
         </button>
         <p>Vous avez un compte? <a href="./login.php">Se connecter</a></p>
       </form>
     </div>
-    <script src="../javascript/login_signup.js"></script>
+    <script src="../javascript/signup.js"></script>
   </body>
 </html>

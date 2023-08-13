@@ -11,12 +11,31 @@ if ($select_data === false) {
     echo "Error in query: " . mysql_error();
 } else {
     $row = mysql_fetch_assoc($select_data);
-    if ($row !== false) {
-        echo "Welcome, " . $row['prenom'] . ' ' . $row['nom'];
-    } else {
-        echo "User not found.";
+    if ($row == false) {
+       echo "User not found.";
     }
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $nom = $_POST['nom'];
+  $prenom = $_POST['prenom'];
+  $email = $_POST['email'];
+  $numero = $_POST['numero'];
+
+  $update_query = " UPDATE user 
+                    SET nom = '$nom' , prenom = '$prenom' , email = '$email' ,numero = '$numero'
+                    WHERE matricule = '{$_SESSION['user_matricule']}'";
+
+if (mysql_query($update_query)) {
+  $_SESSION['update_success'] = true;
+  header("Location: ".$_SERVER['PHP_SELF']);
+  exit();
+} else {
+  echo "Error updating user information: " . mysql_error();
+}
+
+}
+
 
 ?>
 
@@ -45,6 +64,7 @@ if ($select_data === false) {
     <title>Modification de Profile</title>
   </head>
   <body>
+  <div class="page-container">
     <div class="container">
       <a href="../index.php" class="back-button">
         <div class="button-content">
@@ -55,7 +75,18 @@ if ($select_data === false) {
       <div class="row">
         <div class="pb-3 h3 text-left">Modification de Profile</div>
       </div>
-      <form id="flight-form" onsubmit="return validateForm()">
+      <div class="popup" id="popup">
+            <div class="popup-content">
+                <p>Les informations ont été mises à jour avec succès.</p>
+                <button id="closePopup">Fermer</button>
+            </div>
+        </div>
+      <form 
+        action=""
+        method="post"
+        class="form"
+        id="flight-form" 
+        onsubmit="return validateUpdateForm();">
         <div class="row">
           <div
             class="autocomplete-container form-group col-md align-items-start flex-column"
@@ -67,7 +98,7 @@ if ($select_data === false) {
               <input
                 type="text"
                 placeholder="<?php echo $row['matricule']; ?>"
-                class="form-control"
+                class="form-control fs-6"
                 id="matricule"
                 name="matricule"
                 disabled
@@ -84,7 +115,7 @@ if ($select_data === false) {
               <input
                 type="text"
                 placeholder="<?php echo $row['CIN']; ?>"
-                class="form-control"
+                class="form-control fs-6"
                 id="CIN"
                 name="CIN"
                 autocomplete="off"
@@ -102,7 +133,7 @@ if ($select_data === false) {
               <input
                 type="text"
                 placeholder="Nom"
-                class="form-control"
+                class="form-control p-2 fs-6"
                 id="nom"
                 name="nom"
                 value="<?php echo $row['nom']; ?>"
@@ -116,7 +147,7 @@ if ($select_data === false) {
               <input
                 type="text"
                 placeholder="Prénom"
-                class="form-control"
+                class="form-control p-2 fs-6"
                 id="prenom"
                 name="prenom"
                 value="<?php echo $row['prenom']; ?>"
@@ -125,13 +156,13 @@ if ($select_data === false) {
           </div>
         </div>
         <div class="row">
-          <div class="form-group col-md align-items-start flex-column">
+          <div class="form-group col-md align-items-start flex-column ">
             <label for="email" class="d-inline-flex nowrap"> E-mail: </label>
-            <div class="input-group">
+            <div class="input-group ">
               <input
                 type="email"
                 placeholder="email@yahoo.fr"
-                class="form-control"
+                class="form-control p-2"
                 id="email"
                 name="email"
                 value="<?php echo $row['email']; ?>"
@@ -143,9 +174,9 @@ if ($select_data === false) {
             <label for="numero" class="d-inline-flex nowrap"> Numéro: </label>
             <div class="input-group">
               <input
-                type="email"
+                type="text"
                 placeholder="Numéro"
-                class="form-control"
+                class="form-control p-2 fs-6"
                 id="numero"
                 name="numero"
                 value="<?php echo $row['numero']; ?>"
@@ -153,20 +184,38 @@ if ($select_data === false) {
             </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-9">
-            <button type="submit" class="btn btn-primary btn-block">
+            <button type="submit" class="btn btn-primary btn-block enregistrer-btn" disabled>
               Enregistrer
             </button>
           </div>
           <div class="col-md-3">
-            <button type="reset" class="btn btn-primary btn-block">
+            <button type="reset" class="btn btn-primary btn-block" id="annuler-btn">
               Annuler
             </button>
           </div>
         </div>
       </form>
     </div>
+</div>
+  <script>
+    // Pop up success message on update
+    document.addEventListener("DOMContentLoaded", function () {
+        <?php if(isset($_SESSION['update_success']) && $_SESSION['update_success']) { ?>
+            const popup = document.getElementById("popup");
+            const closePopup = document.getElementById("closePopup");
+
+            popup.style.display = "flex";
+
+            closePopup.addEventListener("click", function () {
+                popup.style.display = "none";
+            });
+
+            <?php unset($_SESSION['update_success']); ?> // Clear the session flag after using it
+        <?php } ?>
+    });
+  </script>
+  <script src="../javascript/modification_de_profile.js"></script>
   </body>
 </html>

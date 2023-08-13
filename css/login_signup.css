@@ -144,3 +144,9 @@ label {
   background-color: #cc0000;
   border-color: #cc0000;
 }
+
+.recaptcha-tooltip {
+  color: #007bff; /* Light blue color */
+  font-size: 14px;
+  margin-top: 5px;
+}

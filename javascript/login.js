@@ -14,36 +14,42 @@ eyeIcon.addEventListener("click", () => {
   }
 });
 
-function validateLoginForm() {
-  console.log("validateLoginForm function executed");
-
-  const form = document.querySelector(".form");
-
-  // Toggle is-invalid class and show validation errors
-  function toggleValidation() {
-    const inputs = form.querySelectorAll(".form-control");
-    let hasInvalidInputs = false;
-
-    inputs.forEach((input) => {
-      const parentDiv = input.closest(".form-group");
-      const feedback = parentDiv.querySelector(".invalid-feedback");
-
-      if (input.value.trim() === "") {
-        input.classList.add("is-invalid");
-        parentDiv.classList.add("is-invalid");
-        feedback.style.display = "block";
-        hasInvalidInputs = true;
-      } else {
-        input.classList.remove("is-invalid");
-        parentDiv.classList.remove("is-invalid");
-        feedback.style.display = "none";
-      }
-    });
-
-    return !hasInvalidInputs; // Return true if there are no invalid inputs
+// Verification de log in form
+function validateLogInForm() {
+  const matriculeInput = document.getElementById("Matricule");
+  const passwordInput = document.getElementById("password");
+  const parentDiv = document.getElementById("form-floating-add-is-invalid");
+  const parentDivPw = document.getElementById(
+    "form-floating-add-is-invalid-pw"
+  );
+  const eyeIconDiv = document.getElementById("eye-icon-id");
+  // Matricule validation (5-digit number)
+  const matriculePattern = /^\d{5}$/;
+  if (!matriculePattern.test(matriculeInput.value)) {
+    parentDiv.classList.add("is-invalid");
+    matriculeInput.classList.add("is-invalid");
+  } else {
+    parentDiv.classList.remove("is-invalid");
+    matriculeInput.classList.remove("is-invalid");
   }
 
-  if (!toggleValidation()) {
-    return false; // Prevent form submission if there are invalid inputs
+  // Password validation (not empty)
+  if (passwordInput.value === "") {
+    passwordInput.classList.add("is-invalid");
+    parentDivPw.classList.add("is-invalid");
+    eyeIconDiv.classList.add("me-3");
+  } else {
+    passwordInput.classList.remove("is-invalid");
+    parentDivPw.classList.remove("is-invalid");
+    eyeIconDiv.classList.remove("me-3");
   }
+
+  if (
+    !matriculePattern.test(matriculeInput.value) ||
+    passwordInput.value === ""
+  ) {
+    return false;
+  }
+
+  return true; // Form is valid, allow submission
 }

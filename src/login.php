@@ -116,6 +116,6 @@ if (isset($_GET['success']) && $_GET['success'] === 'true') {
         </p>
       </form>
     </div>
-    <script src="../javascript/login_signup.js"></script>
+    <script src="../javascript/login.js"></script>
   </body>
 </html>
