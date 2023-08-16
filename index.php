@@ -87,7 +87,7 @@ if (!isset($_SESSION['user_session'])) {
         </div>
 
         <div class="card">
-          <a href="./src/historique.html" class="stretched-link"></a>
+          <a href="./src/historique.php" class="stretched-link"></a>
           <div class="card--content">
             <img
               class="card--icon"

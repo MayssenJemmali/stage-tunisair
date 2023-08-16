@@ -1,3 +1,22 @@
+<?php 
+mysql_connect('localhost','root','') or die("Coudln't connect to server");
+mysql_select_db('stage-tunisair') or die("Coudln't select Data base");
+
+session_start(); 
+
+$select_data_query = "SELECT * 
+                      FROM cotisation 
+                      WHERE matricule = '{$_SESSION['user_matricule']}'";
+
+$select_data = mysql_query($select_data_query);
+
+if ($select_data === false) {
+    echo "Error in query: " . mysql_error();
+} 
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,6 +63,7 @@
                 />
               </button>
             </th>
+            <th>Référence</th>
             <th>
               <span>Date</span>
               <button class="sort-btn" id="sort-date">
@@ -69,8 +89,46 @@
           </tr>
         </thead>
         <tbody>
+          <?php 
+            while ($row = mysql_fetch_assoc($select_data)) {
+              $id_paiment = $row['id_paiment'];
+              $reference = $row['reference'];
+              $date_paiment = $row['date_paiment'];
+              $montant = $row['montant'];
+              $methode_de_Paiement = $row['methode_de_Paiement'];
+              $statut = $row['statut'];
+              $badgeClass = '';
+              if ($statut == 'success') {
+                  $badgeClass = 'success';
+              } elseif ($statut == 'rejetee') {
+                  $badgeClass = 'danger';
+              } elseif ($statut == 'attente') {
+                  $badgeClass = 'info';
+              }
+              // Display the cotisation information
+              echo "<tr>";
+              echo "<td>$id_paiment</td>";
+              echo "<td>$reference</td>";
+              echo "<td>$date_paiment</td>";
+              echo "<td>$montant</td>";
+              echo "<td class='d-flex align-items-center'>
+                      <img
+                        src='../img/{$methode_de_Paiement}.png'
+                        alt='MasterCard'
+                        class='credit-card'
+                      />
+                      <span>$methode_de_Paiement</span>
+                    </td>";
+              echo "<td class='text-center'>
+                       <span class='badge text-bg-{$badgeClass}'>$statut</span>
+                       </td>";
+              echo "</tr>";
+            }
+          ?>
+
           <tr>
             <td>1</td>
+            <td>TT608942399189</td>
             <td>2023-05-15</td>
             <td>100.00</td>
             <td class="d-flex align-items-center">
@@ -85,51 +143,6 @@
               <span class="badge text-bg-success">Succès </span>
             </td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>2023-04-14</td>
-            <td>70.00</td>
-            <td class="d-flex align-items-center">
-              <img src="../img/visa.png" alt="MasterCard" class="visa-card" />
-              <span>Visa</span>
-            </td>
-            <td class="text-center">
-              <span class="badge text-bg-danger">Rejetée</span>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>2023-03-15</td>
-            <td>110.00</td>
-            <td class="d-flex align-items-center">
-              <img
-                src="../img/mastercard.png"
-                alt="MasterCard"
-                class="credit-card"
-              />
-              <span>MasterCard</span>
-            </td>
-            <td class="text-center">
-              <span class="badge text-bg-success">Succès</span>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>2023-04-13</td>
-            <td>75.00</td>
-            <td class="d-flex align-items-center">
-              <img
-                src="../img/mastercard.png"
-                alt="MasterCard"
-                class="credit-card"
-              />
-              <span>MasterCard</span>
-            </td>
-            <td class="text-center">
-              <span class="badge text-bg-info">En attente</span>
-            </td>
-          </tr>
-          <!-- Add more rows as needed -->
         </tbody>
       </table>
     </div>

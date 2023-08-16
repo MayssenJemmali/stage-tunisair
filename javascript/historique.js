@@ -1,19 +1,15 @@
 $(document).ready(function () {
   var sortDirection = {
-    montant: "asc", // Initial sorting direction for Montant (DT) column
-    date: "asc", // Initial sorting direction for Date column
+    montant: "asc",
+    date: "asc",
+    id: "asc",
   };
 
-  $("#sort-montant").click(function () {
-    sortTable(2, "montant"); // 2 is the index of the "Montant (DT)" column (0-based)
-  });
+  $(".sort-btn").click(function () {
+    var column = $(this).parent().index(); // Get the index of the clicked header cell
+    var columnName = $(this).parent().find("span").text().trim().toLowerCase();
 
-  $("#sort-date").click(function () {
-    sortTable(1, "date"); // 1 is the index of the "Date" column (0-based)
-  });
-
-  $("#sort-id").click(function () {
-    sortTable(0, "id"); // 1 is the index of the "Date" column (0-based)
+    sortTable(column, columnName);
   });
 
   function sortTable(columnIndex, columnName) {
@@ -31,7 +27,7 @@ $(document).ready(function () {
         x = rows[i].getElementsByTagName("td")[columnIndex];
         y = rows[i + 1].getElementsByTagName("td")[columnIndex];
 
-        if (columnIndex === 1) {
+        if (columnIndex === 2) {
           x = new Date(x.textContent);
           y = new Date(y.textContent);
         } else {
