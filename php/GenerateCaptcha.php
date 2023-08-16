@@ -22,7 +22,7 @@
     } 
 
     // Set captcha letters
-    $range = '0123456789ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstwxyz&#$?:/*-=+';
+    $range = '0123456789ABCDEFGHJKLMNPQRSTUVWXZabcdefghijkmnopqrstwxyz&#$?:/*-=+';
     $length = strlen($range);
     $captcha = $range[rand(0, $length-1)];
     $word = '';

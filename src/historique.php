@@ -50,6 +50,9 @@ if ($select_data === false) {
       </a>
 
       <h1 class="title mb-4 fw-medium">Historique De Mouvement</h1>
+      <?php if (mysql_num_rows($select_data) == 0) {
+        echo "<h3 class='m-2'>Pas de cotisation jusqu'à présent.</h3>";
+      } else {?>
       <table class="table table-bordered table-striped">
         <thead>
           <tr>
@@ -125,26 +128,9 @@ if ($select_data === false) {
               echo "</tr>";
             }
           ?>
-
-          <tr>
-            <td>1</td>
-            <td>TT608942399189</td>
-            <td>2023-05-15</td>
-            <td>100.00</td>
-            <td class="d-flex align-items-center">
-              <img
-                src="../img/mastercard.png"
-                alt="MasterCard"
-                class="credit-card"
-              />
-              <span>MasterCard</span>
-            </td>
-            <td class="text-center">
-              <span class="badge text-bg-success">Succès </span>
-            </td>
-          </tr>
         </tbody>
       </table>
+      <?php }?>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
