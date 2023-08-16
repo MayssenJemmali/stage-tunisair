@@ -91,7 +91,7 @@ if (mysql_query($update_query)) {
                 <p>Les informations ont été mises à jour avec succès.</p>
                 <button id="closePopup">Fermer</button>
             </div>
-        </div>
+      </div>
       <form 
         action=""
         method="post"

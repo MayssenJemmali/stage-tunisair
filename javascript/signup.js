@@ -94,21 +94,6 @@ function validatePasswords() {
   }
 }
 
-/* function validateRecaptcha() {
-  var recaptchaCheckbox = document.querySelector(".g-recaptcha-checkbox");
-  var isRecaptchaChecked = recaptchaCheckbox && recaptchaCheckbox.checked;
-
-  var recaptchaTooltip = document.querySelector(".recaptcha-tooltip");
-  if (!isRecaptchaChecked) {
-    recaptchaTooltip.style.display = "block";
-    recaptchaCheckbox.addEventListener("change", function () {
-      recaptchaTooltip.style.display = "none";
-    });
-  } else {
-    recaptchaTooltip.style.display = "none";
-  }
-} */
-
 // Form submission handler
 function validateSignUpForm() {
   // Call individual validation functions for each input
