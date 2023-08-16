@@ -16,16 +16,27 @@ if ($select_data === false) {
     }
 }
 
+/* To show only the last 4 digits of CIN */
+$lastFourDigitsCIN = substr($row['CIN'], -3);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $nom = $_POST['nom'];
   $prenom = $_POST['prenom'];
   $email = $_POST['email'];
   $numero = $_POST['numero'];
+  $passwordNouveau = $_POST['passwordNouveau'];
 
-  $update_query = " UPDATE user 
+  if (empty($passwordNouveau)){
+    $update_query = " UPDATE user 
                     SET nom = '$nom' , prenom = '$prenom' , email = '$email' ,numero = '$numero'
                     WHERE matricule = '{$_SESSION['user_matricule']}'";
+  } else {
+    $update_query = " UPDATE user 
+                    SET nom = '$nom' , prenom = '$prenom' , email = '$email' ,numero = '$numero', password ='$passwordNouveau'
+                    WHERE matricule = '{$_SESSION['user_matricule']}'";
 
+  }
+  
 if (mysql_query($update_query)) {
   $_SESSION['update_success'] = true;
   header("Location: ".$_SERVER['PHP_SELF']);
@@ -114,7 +125,7 @@ if (mysql_query($update_query)) {
             <div class="input-group">
               <input
                 type="text"
-                placeholder="<?php echo $row['CIN']; ?>"
+                placeholder="*****<?php echo $lastFourDigitsCIN; ?>"
                 class="form-control fs-6"
                 id="CIN"
                 name="CIN"
@@ -182,6 +193,36 @@ if (mysql_query($update_query)) {
                 value="<?php echo $row['numero']; ?>"
               />
             </div>
+          </div>
+        </div>
+        <div class="pb-1 pt-2 h3 text-left">Modification de mot de passe</div>
+
+        <div class="row">
+          <div class="form-group col-md align-items-start flex-column">
+              <label for="passwordNouveau" class="d-inline-flex nowrap"> Nouveau mot de passe: </label>
+                <div class="input-group">
+                  <input
+                    type="password"
+                    placeholder=""
+                    class="form-control p-2 fs-6"
+                    id="passwordNouveau"
+                    name="passwordNouveau"
+                    value=""
+                  />
+                </div>
+          </div>
+          <div class="form-group col-md align-items-start flex-column">
+              <label for="passwordConfirmer" class="d-inline-flex nowrap"> Confirmer mot de passe: </label>
+                <div class="input-group">
+                  <input
+                    type="password"
+                    placeholder=""
+                    class="form-control p-2 fs-6"
+                    id="passwordConfirmer"
+                    name="passwordConfirmer"
+                    value=""
+                  />
+                </div>
           </div>
         </div>
         <div class="row">
