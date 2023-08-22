@@ -101,7 +101,7 @@ if (isset($_GET['success']) && $_GET['success'] === 'true') {
                 id="eye-icon-img"
               />
             </div>
-            <label for="password">Mod de passe</label>
+            <label for="password">Mot de passe</label>
 
           </div>
           <div class="invalid-feedback">Saisir votre mot de passe.</div>

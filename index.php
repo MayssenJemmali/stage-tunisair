@@ -121,7 +121,7 @@ if (!isset($_SESSION['user_session'])) {
           <p class="card--title">Pièces Justificatives</p>
         </div>
         <div class="card">
-          <a href="./src/reclamation.html" class="stretched-link"></a>
+          <a href="./src/reclamation.php" class="stretched-link"></a>
           <div class="card--content">
             <img
               class="card--icon"
