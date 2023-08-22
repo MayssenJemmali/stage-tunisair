@@ -84,7 +84,6 @@ function validateReclamationForm() {
   validateMessage();
   // Check if any input has the "is-invalid" class
   var invalidInputs = document.querySelectorAll(".is-invalid");
-  console.log(invalidInputs);
   if (invalidInputs.length > 0) {
     return false;
   }
