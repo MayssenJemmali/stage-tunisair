@@ -9,6 +9,9 @@
   justify-content: center;
 }
 
+th {
+  text-align: center;
+}
 .back-button {
   display: inline-block;
   padding: 5px 15px;
@@ -19,7 +22,6 @@
   background-color: red;
   border: none;
   border-radius: 5px;
-  transition: background-color 0.2s, border 0.2s;
 }
 
 .return-arrow {
@@ -37,6 +39,31 @@
   font-family: "rubik";
 }
 
+.button-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.styled-button {
+  cursor: pointer;
+  padding: 5px 10px;
+  font-weight: 400;
+  border: none;
+  border-radius: 5px;
+  font-size: 28px;
+  flex: 1;
+}
+
+.selected {
+  background-color: red;
+  color: white;
+}
+
+.styled-button:hover {
+  background-color: #ecf0f1; /* Light grey shade */
+  color: #333; /* Dark grey color */
+}
 .arrow-icon {
   width: 16px;
   height: 16px;

@@ -8,9 +8,17 @@ $select_data_query = "SELECT *
                       FROM cotisation 
                       WHERE matricule = '{$_SESSION['user_matricule']}'";
 
+$flight_data_query = "SELECT * 
+                FROM flight 
+                WHERE matricule = '{$_SESSION['user_matricule']}'";
+
 $select_data = mysql_query($select_data_query);
+$flight_data = mysql_query($flight_data_query);
 
 if ($select_data === false) {
+    echo "Error in query: " . mysql_error();
+} 
+if ($flight_data === false) {
     echo "Error in query: " . mysql_error();
 } 
 
@@ -42,18 +50,24 @@ if ($select_data === false) {
   </head>
   <body>
     <div class="container mt-5">
-      <a href="../index.php" class="back-button">
-        <div class="button-content">
-          <img src="../img/arrow.png" alt="Arrow" class="return-arrow" />
-          <span>Retour </span>
-        </div>
-      </a>
+      <div>
+        <a href="../index.php" class="back-button">
+          <div class="button-content">
+            <img src="../img/arrow.png" alt="Arrow" class="return-arrow" />
+            <span>Retour </span>
+          </div>
+        </a>
+      </div>
 
-      <h1 class="title mb-4 fw-medium">Historique De Mouvement</h1>
+      <div class="button-container">
+          <button id="payment-history" class="styled-button selected">Historique De Cotisation</button>
+          <button id="ticket-history" class="styled-button">Historique D'Achat Billet</button>
+      </div>
+
       <?php if (mysql_num_rows($select_data) == 0) {
         echo "<h3 class='m-2'>Pas de cotisation jusqu'à présent.</h3>";
       } else {?>
-      <table class="table table-bordered table-striped">
+      <table class="table table-bordered table-striped" id="payment-table">
         <thead>
           <tr>
             <th>
@@ -131,8 +145,102 @@ if ($select_data === false) {
         </tbody>
       </table>
       <?php }?>
-    </div>
 
+      <!-- Flgiht table -->
+      <table class="table table-bordered table-striped" id="ticket-table" style="display: none">
+        <thead>
+          <tr>
+            <th>
+              ID
+            </th>
+            <th>Depart</th>
+            <th>
+              Arrivée
+            </th>
+            <th>
+              Date depart
+            </th>
+            <th>Date arrivée</th>
+            <th>Cabine</th>
+            <th>Adultes</th>
+            <th>Enfants</th>
+            <th>Bébés</th>
+            <th>Vol direct</th>
+            <th>Type	</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php 
+            while ($row = mysql_fetch_assoc($flight_data)) {
+              $id_flight = $row['id_flight'];
+              $departure = $row['departure'];
+              $arrival = $row['arrival'];
+              $departure_date = $row['departure_date'];
+              $arrival_date = $row['arrival_date'];
+              $cabin = $row['cabin'];
+              $adult_nbr = $row['adult_nbr'];
+              $children_nbr = $row['children_nbr'];
+              $baby_nbr = $row['baby_nbr'];
+              if ($row['direct_flight']) {
+                $direct_flight = "Vol direct";
+              } else {
+                $direct_flight = "Vol non direct";
+              }
+              $trip_type = $row['trip_type'];
+              
+              
+              // Display the cotisation information
+              echo "<tr>";
+              echo "<td>$id_flight</td>";
+              echo "<td>$departure</td>";
+              echo "<td>$arrival</td>";
+              echo "<td>$departure_date</td>";
+              echo "<td>$arrival_date</td>";
+              echo "<td>$cabin</td>";
+              echo "<td>$adult_nbr</td>";
+              echo "<td>$children_nbr</td>";
+              echo "<td>$baby_nbr</td>";
+              echo "<td>$direct_flight</td>";
+              echo "<td>$trip_type</td>";
+              echo "</tr>";
+            }
+          ?>
+        </tbody>
+      </table>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".styled-button");
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                buttons.forEach((btn) => {
+                    btn.classList.remove("selected");
+                    btn.style.backgroundColor = ""; // Reset background color
+                    btn.style.color = ""; // Reset text color
+                });
+                button.classList.add("selected");
+                button.style.backgroundColor = "red"; // Red shade
+                button.style.color = "white";
+            });
+        });
+    });
+
+      const paymentHistoryBtn = document.getElementById("payment-history");
+      const ticketHistoryBtn = document.getElementById("ticket-history");
+      const paymentTable = document.getElementById("payment-table");
+      const ticketTable = document.getElementById("ticket-table");
+
+      paymentHistoryBtn.addEventListener("click", () => {
+        paymentTable.style.display = "table";
+        ticketTable.style.display = "none";
+      });
+
+      ticketHistoryBtn.addEventListener("click", () => {
+        paymentTable.style.display = "none";
+        ticketTable.style.display = "table";
+      });
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../javascript/historique.js"></script>
   </body>
