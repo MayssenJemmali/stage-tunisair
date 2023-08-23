@@ -7,7 +7,8 @@ session_start();
 
 $flight_data_query = "SELECT * 
                 FROM flight 
-                WHERE matricule = '{$_SESSION['user_matricule']}'";
+                WHERE matricule = '{$_SESSION['user_matricule']}'
+                ORDER BY id_flight DESC";
 
 $flight_data = mysql_query($flight_data_query);
 
@@ -74,9 +75,6 @@ if ($flight_data === false) {
               </th>
               <th>Date arrivée</th>
               <th>Cabine</th>
-              <th>Adultes</th>
-              <th>Enfants</th>
-              <th>Bébés</th>
               <th>Vol direct</th>
               <th>Type	</th>
             </tr>
@@ -90,9 +88,6 @@ if ($flight_data === false) {
                 $departure_date = $row['departure_date'];
                 $arrival_date = $row['arrival_date'];
                 $cabin = $row['cabin'];
-                $adult_nbr = $row['adult_nbr'];
-                $children_nbr = $row['children_nbr'];
-                $baby_nbr = $row['baby_nbr'];
                 if ($row['direct_flight']) {
                   $direct_flight = "Vol direct";
                 } else {
@@ -109,9 +104,6 @@ if ($flight_data === false) {
                 echo "<td>$departure_date</td>";
                 echo "<td>$arrival_date</td>";
                 echo "<td>$cabin</td>";
-                echo "<td>$adult_nbr</td>";
-                echo "<td>$children_nbr</td>";
-                echo "<td>$baby_nbr</td>";
                 echo "<td>$direct_flight</td>";
                 echo "<td>$trip_type</td>";
                 echo "</tr>";

@@ -14,22 +14,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $departure_date = $date[0];
   $arrival_date = $date[1];
   $cabin = $_POST['cabin'];
-  $adult_nbr = $_POST['adults'];
+  /* $adult_nbr = $_POST['adults'];
   $children_nbr = $_POST['children'];
-  $baby_nbr = $_POST['infants'];
-  $direct_flight = $_POST['infants'];
-  $baby_nbr = $_POST['infants'];
-  if(isset($_POST['directFlights'])) {
-      // Checkbox is checked
-      $direct_flights = true;
-  } else {
-      // Checkbox is not checked
-      $direct_flights = false;
-  }
+  $baby_nbr = $_POST['infants']; */
+  if(isset($_POST['direct'])) {
+    $direct_flight = $_POST['direct'];
+    $direct_flights = true;
+} else {
+    $direct_flight = 0; // Set a default value if the checkbox is not checked
+    $direct_flights = false;
+}
   $trip_type = $_POST['trip-type'];
 
-  $flight_query = "INSERT INTO flight (departure, arrival, departure_date, arrival_date, cabin, adult_nbr, children_nbr, baby_nbr, direct_flight, trip_type, matricule)
-                   VALUES('$departure', '$arrival', '$departure_date', '$arrival_date', '$cabin', $adult_nbr, $children_nbr, $baby_nbr, $direct_flight , '$trip_type',$matricule)";
+  $flight_query = "INSERT INTO flight (departure, arrival, departure_date, arrival_date, cabin, direct_flight, trip_type, matricule)
+                   VALUES('$departure', '$arrival', '$departure_date', '$arrival_date', '$cabin', '$direct_flights' , '$trip_type',$matricule)";
 
   mysql_query($flight_query);
         
@@ -91,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           action="<?php echo $_SERVER['PHP_SELF']; ?>"
           method="post"
           id="flight-form" 
-          onsubmit="return validateAchatBilletForm()"
           >
           <div class="row">
             <div
@@ -176,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </select>
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="form-group col-lg-3 align-items-start flex-column">
               <label for="adults" class="d-inline-flex col-auto"
                 >Adultes <span class="sublabel"> 12+ ans</span></label
@@ -217,27 +214,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="1">2</option>
               </select>
             </div>
-          </div>
-          <div class="row">
-            <div
-              class="form-group col-lg-6 align-items-start flex-column pt-lg-4"
-            >
-              <div class="form-check form-switch">
-                <input
-                  class="form-check-input align-self-center"
-                  type="checkbox"
-                  id="directFlights"
-                  name="directFlights"
-                  checked
-                />
-                <label
-                  class="form-check-label d-inline-flex align-self-center"
-                  for="directFlights"
-                  >Vols directs
-                </label>
+          </div> -->
+          <div class="row ps-3">
+              <div class="form-group form-switch col-lg-6 d-flex align-items-start justify-content-start ">
+                  <input class="form-check-input" type="checkbox" role="switch" id="direct" name="direct" value="1" checked>
+                  <label class="form-check-label" for="direct">Vols directs</label>
               </div>
-            </div>
           </div>
+
+
+
           <div class="row">
             <div
               class="form-group col-lg-6 flex-row align-items-start justify-content-lg-start"
