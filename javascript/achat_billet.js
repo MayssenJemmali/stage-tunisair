@@ -78,9 +78,10 @@ arrivalInput.addEventListener("input", () => {
 
 // Fetch airport suggestions function
 async function fetchAirportSuggestions(inputValue) {
-  const url = `https://airlabs.co/api/v9/suggest?q=${inputValue}&api_key=477981b0-1dce-4de2-8d79-4434d621a2f2`;
+  const url = `https://airlabs.co/api/v9/suggest?q=${inputValue}&api_key=cbb99c2f-2708-4090-9f3b-4397e81ab245`;
   const response = await fetch(url);
   const data = await response.json();
+  console.log(data);
   return data.response?.airports || []; // Use optional chaining to check if 'airports' field exists
 }
 
