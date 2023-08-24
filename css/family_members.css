@@ -1,0 +1,135 @@
+* {
+  font-family: "rubik";
+}
+body {
+  background-color: #f5f5f5;
+}
+
+.container {
+  width: 100%;
+  margin: 3rem auto;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.back-button {
+  align-self: flex-start;
+}
+
+#family-members {
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+
+.card {
+  margin-bottom: 20px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  max-height: fit-content; /* Set a max height for the card */
+  overflow: hidden; /* Hide overflow content */
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.card-title {
+  margin: 5px;
+}
+.btn-remove-family {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-remove-family:hover {
+  background-color: #c73025;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card-body {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px;
+  padding-top: 0px;
+}
+
+.form-group {
+  flex: 1;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.form-select,
+.form-control {
+  width: 100%;
+}
+label {
+  margin: 5px 0px 0px 5px;
+}
+
+.btn-primary {
+  padding: 5px 15px;
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.2s, border 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #cc0000; /* Darker red on hover */
+  border-color: #cc0000;
+}
+
+.animate__fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate__fadeOut {
+  animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@media (max-width: 767px) {
+  .form-group {
+    flex: 1 1 100%; /* Make inputs stack on top of each other on smaller screens */
+  }
+}

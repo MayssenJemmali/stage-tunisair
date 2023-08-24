@@ -112,13 +112,16 @@ if (!isset($_SESSION['user_session'])) {
         </div>
 
         <div class="card">
-          <img
-            class="card--icon"
-            id="card--icon--doc"
-            src="./img/doc.svg"
-            alt="Historique Icon"
-          />
-          <p class="card--title">Pièces Justificatives</p>
+          <a href="./src/family_members.php" class="stretched-link"></a>
+          <div class="card--content">
+            <img
+              class="card--icon"
+              id="card--icon--doc"
+              src="./img/doc.svg"
+              alt="Historique Icon"
+            />
+            <p class="card--title">Pièces Justificatives</p>
+          </div>
         </div>
         <div class="card">
           <a href="./src/reclamation.php" class="stretched-link"></a>
